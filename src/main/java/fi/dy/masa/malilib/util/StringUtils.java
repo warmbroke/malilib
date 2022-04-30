@@ -8,6 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import fi.dy.masa.malilib.MaLiLibConfigs;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.resource.language.I18n;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 public class StringUtils
 {
@@ -73,13 +77,12 @@ public class StringUtils
 
     public static void sendOpenFileChatMessage(net.minecraft.entity.Entity sender, String messageKey, File file)
     {
-        net.minecraft.text.Text name = (new net.minecraft.text.LiteralText(file.getName()))
+        Text name = Text.literal(file.getName())
             .formatted(net.minecraft.util.Formatting.UNDERLINE)
             .styled((style) -> {
                 return style.withClickEvent(new net.minecraft.text.ClickEvent(net.minecraft.text.ClickEvent.Action.OPEN_FILE, file.getAbsolutePath()));
             });
-
-        sender.sendSystemMessage(new net.minecraft.text.TranslatableText(messageKey, name), sender.getUuid());
+        sender.method_43496(Text.literal(I18n.translate(messageKey, name)));
     }
 
     /**

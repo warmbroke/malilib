@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '0.12-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -28,13 +28,12 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	//modImplementation "net.fabricmc.fabric-api:fabric-api:" + config.fabric_version
 
-	modImplementation "net.fabricmc.fabric-api:fabric-resource-loader-v0:${config.fabric_resource_loader_version}"
-	include "net.fabricmc.fabric-api:fabric-resource-loader-v0:${config.fabric_resource_loader_version}"
+	include(modImplementation(fabricApi.module("fabric-resource-loader-v0", config.fabric_api_version)))
 
 	modCompileOnly "com.terraformersmc:modmenu:${config.mod_menu_version}"
 }
 
-group = config.group + "." + config.mod_id
+group = config.group
 archivesBaseName = config.mod_file_name + '-' + config.minecraft_version_out
 version = config.mod_version
 
@@ -85,17 +84,18 @@ tasks.publish.dependsOn build
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			artifactId project.archivesBaseName
-
-			// add all the jars that should be included when publishing to maven
+			artifactId = "malilib-303119"
+			version = "${config.minecraft_version.replace(".", "_")}"
+			// add all the jars that should be sincluded when publishing to maven
 			//artifact(jar)             { builtBy remapJar }
 			from components.java
 		}
 	}
 
 	repositories {
+		mavenLocal()
 		maven {
-			url "$projectDir/../../CommonMaven"
+			url("$rootDir/publish")
 		}
 	}
 }

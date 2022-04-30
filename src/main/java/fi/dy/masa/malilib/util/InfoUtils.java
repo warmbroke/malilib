@@ -1,7 +1,9 @@
 package fi.dy.masa.malilib.util;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.resource.language.I18n;
+import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import fi.dy.masa.malilib.gui.GuiBase;
 import fi.dy.masa.malilib.gui.Message.MessageType;
@@ -142,7 +144,8 @@ public class InfoUtils
 
         if (mc.player != null)
         {
-            mc.inGameHud.addChatMessage(net.minecraft.network.MessageType.GAME_INFO, new TranslatableText(key, args), Util.NIL_UUID);
+            //mc.inGameHud.mess
+            mc.inGameHud.method_43591(net.minecraft.network.MessageType.GAME_INFO, Text.of(I18n.translate(key, args)));
         }
     }
 
@@ -198,7 +201,7 @@ public class InfoUtils
 
             if (mc.player != null)
             {
-                mc.inGameHud.addChatMessage(net.minecraft.network.MessageType.GAME_INFO, new TranslatableText(string), Util.NIL_UUID);
+                mc.inGameHud.method_43591(net.minecraft.network.MessageType.GAME_INFO, Text.of(I18n.translate(string)));
             }
         }
     }
