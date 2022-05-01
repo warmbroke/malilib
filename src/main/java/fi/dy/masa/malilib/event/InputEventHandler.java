@@ -202,8 +202,8 @@ public class InputEventHandler implements IKeybindManager, IInputManager
      */
     public boolean onMouseScroll(final int mouseX, final int mouseY, final double xOffset, final double yOffset)
     {
-        boolean discrete = this.mc.options.getDiscreteMouseScroll().getValue();;
-        double sensitivity = this.mc.options.getMouseSensitivity().getValue();
+        boolean discrete = this.mc.options.getDiscreteMouseScroll().getValue();
+        double sensitivity = this.mc.options.getMouseWheelSensitivity().getValue();
         double amount = (discrete ? Math.signum(yOffset) : yOffset) * sensitivity;
 
         if (MaLiLibConfigs.Debug.MOUSE_SCROLL_DEBUG.getBooleanValue())
