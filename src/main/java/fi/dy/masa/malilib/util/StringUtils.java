@@ -82,7 +82,7 @@ public class StringUtils
             .styled((style) -> {
                 return style.withClickEvent(new net.minecraft.text.ClickEvent(net.minecraft.text.ClickEvent.Action.OPEN_FILE, file.getAbsolutePath()));
             });
-        sender.method_43496(Text.literal(I18n.translate(messageKey, name)));
+        sender.sendMessage(Text.literal(I18n.translate(messageKey, name)));
     }
 
     /**

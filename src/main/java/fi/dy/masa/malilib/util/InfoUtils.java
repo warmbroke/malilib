@@ -4,12 +4,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.Text;
-import net.minecraft.util.Util;
 import fi.dy.masa.malilib.gui.GuiBase;
 import fi.dy.masa.malilib.gui.Message.MessageType;
 import fi.dy.masa.malilib.gui.interfaces.IMessageConsumer;
 import fi.dy.masa.malilib.interfaces.IStringConsumer;
 import fi.dy.masa.malilib.render.MessageRenderer;
+import net.minecraft.util.registry.Registry;
 
 public class InfoUtils
 {
@@ -144,8 +144,9 @@ public class InfoUtils
 
         if (mc.player != null)
         {
+            Registry<net.minecraft.network.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
             //mc.inGameHud.mess
-            mc.inGameHud.method_43591(net.minecraft.network.MessageType.GAME_INFO, Text.of(I18n.translate(key, args)));
+            mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.MessageType.GAME_INFO), Text.of(I18n.translate(key, args)));
         }
     }
 
@@ -201,7 +202,8 @@ public class InfoUtils
 
             if (mc.player != null)
             {
-                mc.inGameHud.method_43591(net.minecraft.network.MessageType.GAME_INFO, Text.of(I18n.translate(string)));
+                Registry<net.minecraft.network.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
+                mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.MessageType.GAME_INFO), Text.of(I18n.translate(string)));
             }
         }
     }
