@@ -144,9 +144,9 @@ public class InfoUtils
 
         if (mc.player != null)
         {
-            Registry<net.minecraft.network.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
+            Registry<net.minecraft.network.message.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
             //mc.inGameHud.mess
-            mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.MessageType.GAME_INFO), Text.of(I18n.translate(key, args)));
+            mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.message.MessageType.GAME_INFO), Text.of(I18n.translate(key, args)));
         }
     }
 
@@ -202,8 +202,8 @@ public class InfoUtils
 
             if (mc.player != null)
             {
-                Registry<net.minecraft.network.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
-                mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.MessageType.GAME_INFO), Text.of(I18n.translate(string)));
+                Registry<net.minecraft.network.message.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
+                mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.message.MessageType.GAME_INFO), Text.of(I18n.translate(string)));
             }
         }
     }

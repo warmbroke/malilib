@@ -85,7 +85,7 @@ publishing {
 	publications {
 		mavenJava(MavenPublication) {
 			artifactId = "malilib-303119"
-			version = "${config.minecraft_version.replace(".", "_")}"
+			version = "${config.minecraft_version}"
 			// add all the jars that should be sincluded when publishing to maven
 			//artifact(jar)             { builtBy remapJar }
 			from components.java
