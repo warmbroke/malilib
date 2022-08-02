@@ -9,7 +9,6 @@ import fi.dy.masa.malilib.gui.Message.MessageType;
 import fi.dy.masa.malilib.gui.interfaces.IMessageConsumer;
 import fi.dy.masa.malilib.interfaces.IStringConsumer;
 import fi.dy.masa.malilib.render.MessageRenderer;
-import net.minecraft.util.registry.Registry;
 
 public class InfoUtils
 {
@@ -144,9 +143,7 @@ public class InfoUtils
 
         if (mc.player != null)
         {
-            Registry<net.minecraft.network.message.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
-            //mc.inGameHud.mess
-            mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.message.MessageType.GAME_INFO), Text.of(I18n.translate(key, args)));
+            mc.inGameHud.setOverlayMessage(Text.of(I18n.translate(key, args)), false);
         }
     }
 
@@ -202,8 +199,7 @@ public class InfoUtils
 
             if (mc.player != null)
             {
-                Registry<net.minecraft.network.message.MessageType> registry = mc.world.getRegistryManager().get(Registry.MESSAGE_TYPE_KEY);
-                mc.inGameHud.onGameMessage(registry.get(net.minecraft.network.message.MessageType.GAME_INFO), Text.of(I18n.translate(string)));
+                mc.inGameHud.setOverlayMessage(Text.of(I18n.translate(string)), false);
             }
         }
     }
